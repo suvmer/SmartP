@@ -132,14 +132,18 @@ class NewConst extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+          backgroundColor: Colors.grey.shade300,
+          appBar: AppBar(
+              title: Text("Выбирите категории", style: TextStyle(color: Colors.grey.shade800),),
+              backgroundColor: Colors.grey.shade300),
           body: Center(
-        child: TextButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text("Back"),
-        ),
-      )),
+            child: TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Back"),
+            ),
+          )),
     );
   }
 }
@@ -194,9 +198,9 @@ class MyProj extends StatelessWidget {
                             child: InkWell(
                               splashColor: Colors.blue, // splash color
                               onTap: () {
-                              Route route = MaterialPageRoute(
-                                  builder: (context) => MyApp());
-                              Navigator.push(context, route);
+                                Route route = MaterialPageRoute(
+                                    builder: (context) => MyApp());
+                                Navigator.push(context, route);
                               }, // button pressed
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -353,4 +357,4 @@ class Chernoviki extends StatelessWidget {
   }
 }
 
-//22:43
+//22:57
