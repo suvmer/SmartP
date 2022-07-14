@@ -125,9 +125,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class NewConst extends StatelessWidget {
+
+
+class NewConst extends StatefulWidget {
   const NewConst({Key? key}) : super(key: key);
 
+  @override
+  State<NewConst> createState() => _NewConstState();
+}
+
+class _NewConstState extends State<NewConst> {
+  List toDoList = [];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -357,4 +365,4 @@ class Chernoviki extends StatelessWidget {
   }
 }
 
-//22:57
+//23:13
