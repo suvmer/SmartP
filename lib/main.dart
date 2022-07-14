@@ -40,18 +40,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  // int _counter = 0;
+  //
+  // void _incrementCounter() {
+  //   setState(() {
+  //     // This call to setState tells the Flutter framework that something has
+  //     // changed in this State, which causes it to rerun the build method below
+  //     // so that the display can reflect the updated values. If we changed
+  //     // _counter without calling setState(), then the build method would not be
+  //     // called again, and so nothing would appear to happen.
+  //     _counter++;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -194,7 +194,9 @@ class MyProj extends StatelessWidget {
                             child: InkWell(
                               splashColor: Colors.blue, // splash color
                               onTap: () {
-                                Navigator.pop(context);
+                              Route route = MaterialPageRoute(
+                                  builder: (context) => MyApp());
+                              Navigator.push(context, route);
                               }, // button pressed
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -296,7 +298,9 @@ class Chernoviki extends StatelessWidget {
                             child: InkWell(
                               splashColor: Colors.blue, // splash color
                               onTap: () {
-                                Navigator.pop(context);
+                                Route route = MaterialPageRoute(
+                                    builder: (context) => MyApp());
+                                Navigator.push(context, route);
                               }, // button pressed
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -349,4 +353,4 @@ class Chernoviki extends StatelessWidget {
   }
 }
 
-//22:31
+//22:43
