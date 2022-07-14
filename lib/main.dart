@@ -64,38 +64,46 @@ class _MyHomePageState extends State<MyHomePage> {
     return MaterialApp(
       home: Scaffold(
           body: Column(
-        children: [
-          SizedBox(
-            height: 50,
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-            child: Container(
-                child: Text(
-              "Привет, чем займемся сегодня?",
-              style: TextStyle(fontSize: 35),
-            )),
-          ),
-          SizedBox(
-            height: 100,
-          ),
-          ElevatedButton(
-              child: Text("Создать новый конструктор"),
-              onPressed: () {
-                Route route =
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                      onPressed: () {Route route =
+                      MaterialPageRoute(builder: (context) => MyProj());
+                      Navigator.push(context, route);}, child: Text("Мои проекты")),
+                  SizedBox(width: 10),
+                  TextButton(
+                      onPressed: () {Route route =
+                      MaterialPageRoute(builder: (context) => Chernoviki());
+                      Navigator.push(context, route);}, child: Text("Черновики")),
+                ],
+              ),
+              SizedBox(
+                height: 100,
+              ),
+              ElevatedButton(
+                  child: Text("Создать новый конструктор"),
+                  onPressed: () {
+                    Route route =
                     MaterialPageRoute(builder: (context) => NewConst());
-                Navigator.push(context, route);
-              }),
-          SizedBox(
-            height: 40,
-          ),
-          ElevatedButton(child: Text("Посмотреть пример"), onPressed: () {}),
-          SizedBox(
-            height: 40,
-          ),
-          ElevatedButton(child: Text("Список конструкторов"), onPressed: () {}),
-        ],
-      )),
+                    Navigator.push(context, route);
+                  }),
+              SizedBox(
+                height: 40,
+              ),
+              ElevatedButton(
+                  child: Text("Посмотреть пример"), onPressed: () {}),
+              SizedBox(
+                height: 40,
+              ),
+              ElevatedButton(
+                  child: Text("Список конструкторов"), onPressed: () {}),
+            ],
+          )),
     );
     /*Scaffold(
       appBar: AppBar(
@@ -132,12 +140,34 @@ class NewConst extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
           body: Center(
-            child: TextButton(onPressed: () {
-              Navigator.pop(context);
-            }, child: Text("Back"),),
+            child: TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Back"),
+            ),
           )),
     );
   }
 }
 
-//17:42
+class MyProj extends StatelessWidget {
+  const MyProj({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class Chernoviki extends StatelessWidget {
+  const Chernoviki({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
+//18:15
