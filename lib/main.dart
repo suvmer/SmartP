@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'dart:math';
+
 void main() {
   runApp(const MyApp());
 }
@@ -134,8 +135,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
-
 class NewConst extends StatefulWidget {
   const NewConst({Key? key}) : super(key: key);
 
@@ -144,23 +143,45 @@ class NewConst extends StatefulWidget {
 }
 
 class _NewConstState extends State<NewConst> {
-  List toDoList = [];
+  List toDoList = [
+    "Видеодомофон",
+    "Ворота",
+    "Камеры",
+    "Розетки",
+    "Мультимедиа",
+    "Датчики движения"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          backgroundColor: Colors.grey.shade300,
-          appBar: AppBar(
-              title: Text("Выбирите категории", style: TextStyle(color: Colors.grey.shade800),),
-              backgroundColor: Colors.grey.shade300),
-          body: Center(
-            child: TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text("Back"),
+        backgroundColor: Colors.grey.shade300,
+        appBar: AppBar(
+            title: Text(
+              "Выбирите категории",
+              style: TextStyle(color: Colors.grey.shade800),
             ),
-          )),
+            backgroundColor: Colors.grey.shade300),
+        body: ListView.builder(
+            itemCount: toDoList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Dismissible(
+                key: Key(toDoList[index]),
+                child: Card(
+                  child: ListTile(
+                    title: Text(toDoList[index]),
+                  ),
+                ),
+                onDismissed: (direction) {
+                  //if (direction (направление) == DismissDirection.endToStart)
+                  setState(() {
+                    toDoList.removeAt(index);
+                  });
+                },
+              );
+            }),
+      ),
     );
   }
 }
@@ -267,13 +288,16 @@ class MyProj extends StatelessWidget {
     );
   }
 }
+
 class UniqueColorGenerator {
   static Random random = new Random();
+
   static Color getColor() {
     return Color.fromARGB(
         255, random.nextInt(255), random.nextInt(255), random.nextInt(255));
   }
 }
+
 class Chernoviki extends StatelessWidget {
   const Chernoviki({Key? key}) : super(key: key);
 
@@ -353,4 +377,4 @@ class Chernoviki extends StatelessWidget {
   }
 }
 
-//23:13
+//23:47
