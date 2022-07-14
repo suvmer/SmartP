@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -39,7 +38,6 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
-
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
@@ -63,30 +61,33 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Column(
-      children: [
-        SizedBox(
-          height: 20,
-        ),
-        Container(
-            child: Text(
-              "Привет, чем займемся сегодня?",
-              style: TextStyle(fontSize: 35),
-            )),
-        SizedBox(
-          height: 100,
-        ),
-        ElevatedButton(
-            child: Text("Создать новый конструктор"), onPressed: () {}),
-        SizedBox(
-          height: 40,
-        ),
-        ElevatedButton(child: Text("Посмотреть пример"), onPressed: () {}),
-        SizedBox(
-          height: 40,
-        ),
-        ElevatedButton(child: Text("Список конструкторов"), onPressed: () {}),
-      ],
+    return MaterialApp(
+      home: Scaffold(
+          body: Column(
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+              child: Text(
+            "Привет, чем займемся сегодня?",
+            style: TextStyle(fontSize: 35),
+          )),
+          SizedBox(
+            height: 100,
+          ),
+          ElevatedButton(
+              child: Text("Создать новый конструктор"), onPressed: () {}),
+          SizedBox(
+            height: 40,
+          ),
+          ElevatedButton(child: Text("Посмотреть пример"), onPressed: () {}),
+          SizedBox(
+            height: 40,
+          ),
+          ElevatedButton(child: Text("Список конструкторов"), onPressed: () {}),
+        ],
+      )),
     );
     /*Scaffold(
       appBar: AppBar(
@@ -114,4 +115,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );*/
   }
 }
-//16:28
+//16:47
