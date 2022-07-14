@@ -21,6 +21,40 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//who = 0 - никакой подсветки
+//who = 1 - подсветка "Мои проекты"
+//= 2 - подсветка "Черновики"
+Container getHeader(context, [who]) {
+  who = who ?? 0;
+  return Container(
+      margin: new EdgeInsets.symmetric(vertical: 30.0),
+      child:
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          TextButton(
+              onPressed: () {
+                Route route =
+                MaterialPageRoute(builder: (context) => MyProj());
+                Navigator.push(context, route);
+              },
+              child: Text("Мои проекты",
+                  style: who == 1 ? TextStyle(fontSize: 20, color: Colors.redAccent) : TextStyle(fontSize: 20))),
+          SizedBox(width: 10),
+          TextButton(
+              onPressed: () {
+                Route route =
+                MaterialPageRoute(builder: (context) => Chernoviki());
+                Navigator.push(context, route);
+              },
+              child: Text(
+                "Черновики",
+                style: who == 2 ? TextStyle(fontSize: 20, color: Colors.redAccent) : TextStyle(fontSize: 20)),
+              ),
+        ],
+      ));
+}
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -65,32 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
       home: Scaffold(
           body: Column(
             children: [
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        Route route =
-                        MaterialPageRoute(builder: (context) => MyProj());
-                        Navigator.push(context, route);
-                      },
-                      child: Text("Мои проекты", style: TextStyle(fontSize: 20))),
-                  SizedBox(width: 10),
-                  TextButton(
-                      onPressed: () {
-                        Route route =
-                        MaterialPageRoute(builder: (context) => Chernoviki());
-                        Navigator.push(context, route);
-                      },
-                      child: Text(
-                        "Черновики",
-                        style: TextStyle(fontSize: 20),
-                      )),
-                ],
-              ),
+              getHeader(context),
               SizedBox(
                 height: 70,
               ),
@@ -165,33 +174,7 @@ class MyProj extends StatelessWidget {
       home: Scaffold(
           body: Column(
             children: [
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        Route route =
-                        MaterialPageRoute(builder: (context) => MyProj());
-                        Navigator.push(context, route);
-                      },
-                      child: Text("Мои проекты",
-                          style: TextStyle(fontSize: 20, color: Colors.redAccent))),
-                  SizedBox(width: 10),
-                  TextButton(
-                      onPressed: () {
-                        Route route =
-                        MaterialPageRoute(builder: (context) => Chernoviki());
-                        Navigator.push(context, route);
-                      },
-                      child: Text(
-                        "Черновики",
-                        style: TextStyle(fontSize: 20),
-                      )),
-                ],
-              ),
+              getHeader(context, 1),
               Expanded(
                   child:
                   SizedBox(
@@ -201,8 +184,8 @@ class MyProj extends StatelessWidget {
                           padding: EdgeInsets.all(40.0),
                           crossAxisCount: 2,
                           childAspectRatio: 1.0,
-                          mainAxisSpacing: 4.0,
-                          crossAxisSpacing: 4.0,
+                          mainAxisSpacing: 40.0,
+                          crossAxisSpacing: 40.0,
                           children: [
                             GridTile(child: Container(color: UniqueColorGenerator.getColor(), child: Padding(padding: EdgeInsets.all(70.0)))),
                             GridTile(child: new FlutterLogo()),
@@ -300,32 +283,7 @@ class Chernoviki extends StatelessWidget {
       home: Scaffold(
           body: Column(
             children: [
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        Route route =
-                        MaterialPageRoute(builder: (context) => MyProj());
-                        Navigator.push(context, route);
-                      },
-                      child: Text("Мои проекты", style: TextStyle(fontSize: 20))),
-                  SizedBox(width: 10),
-                  TextButton(
-                      onPressed: () {
-                        Route route =
-                        MaterialPageRoute(builder: (context) => Chernoviki());
-                        Navigator.push(context, route);
-                      },
-                      child: Text(
-                        "Черновики",
-                        style: TextStyle(fontSize: 20, color: Colors.redAccent),
-                      )),
-                ],
-              ),
+              getHeader(context, 2),
               Expanded(
                   child: Align(
                       alignment: FractionalOffset.bottomCenter,
