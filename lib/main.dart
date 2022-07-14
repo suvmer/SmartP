@@ -141,7 +141,28 @@ class NewConst extends StatefulWidget {
   @override
   State<NewConst> createState() => _NewConstState();
 }
+List<Widget> getCats(toDoList) {
+  List<Widget> ls = [];
+  for(var todoName in toDoList) {
+    ls.add(Row(
+      children: [
+        Expanded(child:
+      TextButton(
+        onPressed: () {
 
+        },
+        child: Text(todoName,
+            style: TextStyle(fontSize: 20))),
+      /*Expanded(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minWidth: 200),
+          child: Text(todoName),
+        ),
+      )*/
+        )]));
+  }
+  return ls;
+}
 class _NewConstState extends State<NewConst> {
   List toDoList = [
     "Видеодомофон",
@@ -151,9 +172,10 @@ class _NewConstState extends State<NewConst> {
     "Мультимедиа",
     "Датчики движения"
   ];
-
+  List<bool> isSelected = List.generate(6, (_)=> false);
   @override
   Widget build(BuildContext context) {
+    isSelected = List.filled(toDoList.length, false);
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.grey.shade300,
@@ -163,24 +185,17 @@ class _NewConstState extends State<NewConst> {
               style: TextStyle(color: Colors.grey.shade800),
             ),
             backgroundColor: Colors.grey.shade300),
-        body: ListView.builder(
-            itemCount: toDoList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Dismissible(
-                key: Key(toDoList[index]),
-                child: Card(
-                  child: ListTile(
-                    title: Text(toDoList[index]),
-                  ),
-                ),
-                onDismissed: (direction) {
-                  //if (direction (направление) == DismissDirection.endToStart)
-                  setState(() {
-                    toDoList.removeAt(index);
-                  });
-                },
-              );
-            }),
+        body: ToggleButtons(
+        children: getCats(toDoList),
+        color:Colors.teal,
+        fillColor:Colors.deepPurple,
+      onPressed: (int index) {
+        setState(() {
+          isSelected[index] = !isSelected[index];
+        });
+      },
+      isSelected: isSelected,
+    ),
       ),
     );
   }
