@@ -64,30 +64,39 @@ class _MyHomePageState extends State<MyHomePage> {
     return MaterialApp(
       home: Scaffold(
           body: Column(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-              child: Text(
-            "Привет, чем займемся сегодня?",
-            style: TextStyle(fontSize: 35),
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Container(
+                    child: Text(
+                      "Привет, чем займемся сегодня?",
+                      style: TextStyle(fontSize: 35),
+                    )),
+              ),
+              SizedBox(
+                height: 100,
+              ),
+              ElevatedButton(
+                  child: Text("Создать новый конструктор"), onPressed: () {
+                Route route = MaterialPageRoute(
+                    builder: (context) => NewConst());
+                Navigator.push(context, route);
+              }),
+              SizedBox(
+                height: 40,
+              ),
+              ElevatedButton(
+                  child: Text("Посмотреть пример"), onPressed: () {}),
+              SizedBox(
+                height: 40,
+              ),
+              ElevatedButton(
+                  child: Text("Список конструкторов"), onPressed: () {}),
+            ],
           )),
-          SizedBox(
-            height: 100,
-          ),
-          ElevatedButton(
-              child: Text("Создать новый конструктор"), onPressed: () {}),
-          SizedBox(
-            height: 40,
-          ),
-          ElevatedButton(child: Text("Посмотреть пример"), onPressed: () {}),
-          SizedBox(
-            height: 40,
-          ),
-          ElevatedButton(child: Text("Список конструкторов"), onPressed: () {}),
-        ],
-      )),
     );
     /*Scaffold(
       appBar: AppBar(
@@ -115,4 +124,14 @@ class _MyHomePageState extends State<MyHomePage> {
     );*/
   }
 }
-//16:47
+
+class NewConst extends StatelessWidget {
+  const NewConst({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(home: Scaffold(body: Text("Привет"),),);
+  }
+}
+
+//17:15
