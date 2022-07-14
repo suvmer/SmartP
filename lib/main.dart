@@ -180,6 +180,63 @@ class MyProj extends StatelessWidget {
                   )),
             ],
           ),
+          Expanded(
+              child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox.fromSize(
+                        size: Size(70, 70), // button width and height
+                        child: ClipOval(
+                          child: Material(
+                            color: Colors.white, // button color
+                            child: InkWell(
+                              splashColor: Colors.blue, // splash color
+                              onTap: () {
+                                Navigator.pop(context);
+                              }, // button pressed
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.home_outlined), // icon
+                                  Text("Главная"), // text
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox.fromSize(
+                          size: Size(70, 70),
+                          child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.add_circle,
+                                size: 50,
+                                color: Colors.blue,
+                              ))),
+                      SizedBox.fromSize(
+                        size: Size(70, 70), // button width and height
+                        child: ClipOval(
+                          child: Material(
+                            color: Colors.white, // button color
+                            child: InkWell(
+                              splashColor: Colors.blue, // splash color
+                              onTap: () {}, // button pressed
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.account_circle), // icon
+                                  Text("Профиль"), // text
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ))),
         ],
       )),
     );
@@ -207,8 +264,7 @@ class Chernoviki extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => MyProj());
                     Navigator.push(context, route);
                   },
-                  child: Text("Мои проекты",
-                      style: TextStyle(fontSize: 20))),
+                  child: Text("Мои проекты", style: TextStyle(fontSize: 20))),
               SizedBox(width: 10),
               TextButton(
                   onPressed: () {
@@ -222,10 +278,67 @@ class Chernoviki extends StatelessWidget {
                   )),
             ],
           ),
+          Expanded(
+              child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox.fromSize(
+                        size: Size(70, 70), // button width and height
+                        child: ClipOval(
+                          child: Material(
+                            color: Colors.white, // button color
+                            child: InkWell(
+                              splashColor: Colors.blue, // splash color
+                              onTap: () {
+                                Navigator.pop(context);
+                              }, // button pressed
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.home_outlined), // icon
+                                  Text("Главная"), // text
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox.fromSize(
+                          size: Size(70, 70),
+                          child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.add_circle,
+                                size: 50,
+                                color: Colors.blue,
+                              ))),
+                      SizedBox.fromSize(
+                        size: Size(70, 70), // button width and height
+                        child: ClipOval(
+                          child: Material(
+                            color: Colors.white, // button color
+                            child: InkWell(
+                              splashColor: Colors.blue, // splash color
+                              onTap: () {}, // button pressed
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.account_circle), // icon
+                                  Text("Профиль"), // text
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ))),
         ],
       )),
     );
   }
 }
 
-//20:46
+//22:22
