@@ -1,7 +1,7 @@
 //АМОГУС
 
 import 'package:flutter/material.dart';
-
+import 'dart:math';
 void main() {
   runApp(const MyApp());
 }
@@ -64,39 +64,39 @@ class _MyHomePageState extends State<MyHomePage> {
     return MaterialApp(
       home: Scaffold(
           body: Column(
-        children: [
-          SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextButton(
-                  onPressed: () {
-                    Route route =
+              SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        Route route =
                         MaterialPageRoute(builder: (context) => MyProj());
-                    Navigator.push(context, route);
-                  },
-                  child: Text("Мои проекты", style: TextStyle(fontSize: 20))),
-              SizedBox(width: 10),
-              TextButton(
-                  onPressed: () {
-                    Route route =
+                        Navigator.push(context, route);
+                      },
+                      child: Text("Мои проекты", style: TextStyle(fontSize: 20))),
+                  SizedBox(width: 10),
+                  TextButton(
+                      onPressed: () {
+                        Route route =
                         MaterialPageRoute(builder: (context) => Chernoviki());
-                    Navigator.push(context, route);
-                  },
-                  child: Text(
-                    "Черновики",
-                    style: TextStyle(fontSize: 20),
-                  )),
+                        Navigator.push(context, route);
+                      },
+                      child: Text(
+                        "Черновики",
+                        style: TextStyle(fontSize: 20),
+                      )),
+                ],
+              ),
+              SizedBox(
+                height: 70,
+              ),
+              Image.asset("Materials/pazl2.png")
             ],
-          ),
-          SizedBox(
-            height: 70,
-          ),
-          Image.asset("Materials/pazl2.png")
-        ],
-      )),
+          )),
     );
     /*Scaffold(
       appBar: AppBar(
@@ -125,9 +125,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class NewConst extends StatelessWidget {
+
+
+class NewConst extends StatefulWidget {
   const NewConst({Key? key}) : super(key: key);
 
+  @override
+  State<NewConst> createState() => _NewConstState();
+}
+
+class _NewConstState extends State<NewConst> {
+  List toDoList = [];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -156,103 +164,133 @@ class MyProj extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
           body: Column(
-        children: [
-          SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextButton(
-                  onPressed: () {
-                    Route route =
+              SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        Route route =
                         MaterialPageRoute(builder: (context) => MyProj());
-                    Navigator.push(context, route);
-                  },
-                  child: Text("Мои проекты",
-                      style: TextStyle(fontSize: 20, color: Colors.redAccent))),
-              SizedBox(width: 10),
-              TextButton(
-                  onPressed: () {
-                    Route route =
+                        Navigator.push(context, route);
+                      },
+                      child: Text("Мои проекты",
+                          style: TextStyle(fontSize: 20, color: Colors.redAccent))),
+                  SizedBox(width: 10),
+                  TextButton(
+                      onPressed: () {
+                        Route route =
                         MaterialPageRoute(builder: (context) => Chernoviki());
-                    Navigator.push(context, route);
-                  },
-                  child: Text(
-                    "Черновики",
-                    style: TextStyle(fontSize: 20),
-                  )),
+                        Navigator.push(context, route);
+                      },
+                      child: Text(
+                        "Черновики",
+                        style: TextStyle(fontSize: 20),
+                      )),
+                ],
+              ),
+              Expanded(
+                  child:
+                  SizedBox(
+                      height: 700.0,
+                      child:
+                      GridView.count(
+                          padding: EdgeInsets.all(40.0),
+                          crossAxisCount: 2,
+                          childAspectRatio: 1.0,
+                          mainAxisSpacing: 4.0,
+                          crossAxisSpacing: 4.0,
+                          children: [
+                            GridTile(child: Container(color: UniqueColorGenerator.getColor(), child: Padding(padding: EdgeInsets.all(70.0)))),
+                            GridTile(child: new FlutterLogo()),
+                            GridTile(child: Container(color: UniqueColorGenerator.getColor(), child: Padding(padding: EdgeInsets.all(70.0)))),
+                            GridTile(child: Container(color: UniqueColorGenerator.getColor(), child: Padding(padding: EdgeInsets.all(70.0)))),
+                            GridTile(child: new FlutterLogo()),
+                            GridTile(child: Container(color: UniqueColorGenerator.getColor(), child: Padding(padding: EdgeInsets.all(70.0)))),
+                            GridTile(child: new FlutterLogo()),
+                            GridTile(child: Container(color: UniqueColorGenerator.getColor(), child: Padding(padding: EdgeInsets.all(70.0)))),
+                            GridTile(child: new FlutterLogo())
+                          ])
+                  )
+              ),
+              Expanded(
+                  child: Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox.fromSize(
+                            size: Size(70, 70), // button width and height
+                            child: ClipOval(
+                              child: Material(
+                                color: Colors.white, // button color
+                                child: InkWell(
+                                  splashColor: Colors.blue, // splash color
+                                  onTap: () {
+                                    Route route = MaterialPageRoute(
+                                        builder: (context) => MyApp());
+                                    Navigator.push(context, route);
+                                  }, // button pressed
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.home_outlined), // icon
+                                      Text("Главная"), // text
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox.fromSize(
+                              size: Size(70, 70),
+                              child: IconButton(
+                                  onPressed: () {
+                                    Route route = MaterialPageRoute(
+                                        builder: (context) => NewConst());
+                                    Navigator.push(context, route);
+                                  },
+                                  icon: Icon(
+                                    Icons.add_circle,
+                                    size: 50,
+                                    color: Colors.blue,
+                                  ))),
+                          SizedBox.fromSize(
+                            size: Size(70, 70), // button width and height
+                            child: ClipOval(
+                              child: Material(
+                                color: Colors.white, // button color
+                                child: InkWell(
+                                  splashColor: Colors.blue, // splash color
+                                  onTap: () {}, // button pressed
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.account_circle), // icon
+                                      Text("Профиль"), // text
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ))),
             ],
-          ),
-          Expanded(
-              child: Align(
-                  alignment: FractionalOffset.bottomCenter,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox.fromSize(
-                        size: Size(70, 70), // button width and height
-                        child: ClipOval(
-                          child: Material(
-                            color: Colors.white, // button color
-                            child: InkWell(
-                              splashColor: Colors.blue, // splash color
-                              onTap: () {
-                                Route route = MaterialPageRoute(
-                                    builder: (context) => MyApp());
-                                Navigator.push(context, route);
-                              }, // button pressed
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.home_outlined), // icon
-                                  Text("Главная"), // text
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox.fromSize(
-                          size: Size(70, 70),
-                          child: IconButton(
-                              onPressed: () {
-                                Route route = MaterialPageRoute(
-                                    builder: (context) => NewConst());
-                                Navigator.push(context, route);
-                              },
-                              icon: Icon(
-                                Icons.add_circle,
-                                size: 50,
-                                color: Colors.blue,
-                              ))),
-                      SizedBox.fromSize(
-                        size: Size(70, 70), // button width and height
-                        child: ClipOval(
-                          child: Material(
-                            color: Colors.white, // button color
-                            child: InkWell(
-                              splashColor: Colors.blue, // splash color
-                              onTap: () {}, // button pressed
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.account_circle), // icon
-                                  Text("Профиль"), // text
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ))),
-        ],
-      )),
+          )),
     );
   }
 }
-
+class UniqueColorGenerator {
+  static Random random = new Random();
+  static Color getColor() {
+    return Color.fromARGB(
+        255, random.nextInt(255), random.nextInt(255), random.nextInt(255));
+  }
+}
 class Chernoviki extends StatelessWidget {
   const Chernoviki({Key? key}) : super(key: key);
 
@@ -261,100 +299,100 @@ class Chernoviki extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
           body: Column(
-        children: [
-          SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextButton(
-                  onPressed: () {
-                    Route route =
+              SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        Route route =
                         MaterialPageRoute(builder: (context) => MyProj());
-                    Navigator.push(context, route);
-                  },
-                  child: Text("Мои проекты", style: TextStyle(fontSize: 20))),
-              SizedBox(width: 10),
-              TextButton(
-                  onPressed: () {
-                    Route route =
+                        Navigator.push(context, route);
+                      },
+                      child: Text("Мои проекты", style: TextStyle(fontSize: 20))),
+                  SizedBox(width: 10),
+                  TextButton(
+                      onPressed: () {
+                        Route route =
                         MaterialPageRoute(builder: (context) => Chernoviki());
-                    Navigator.push(context, route);
-                  },
-                  child: Text(
-                    "Черновики",
-                    style: TextStyle(fontSize: 20, color: Colors.redAccent),
-                  )),
+                        Navigator.push(context, route);
+                      },
+                      child: Text(
+                        "Черновики",
+                        style: TextStyle(fontSize: 20, color: Colors.redAccent),
+                      )),
+                ],
+              ),
+              Expanded(
+                  child: Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox.fromSize(
+                            size: Size(70, 70), // button width and height
+                            child: ClipOval(
+                              child: Material(
+                                color: Colors.white, // button color
+                                child: InkWell(
+                                  splashColor: Colors.blue, // splash color
+                                  onTap: () {
+                                    Route route = MaterialPageRoute(
+                                        builder: (context) => MyApp());
+                                    Navigator.push(context, route);
+                                  }, // button pressed
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.home_outlined), // icon
+                                      Text("Главная"), // text
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox.fromSize(
+                              size: Size(70, 70),
+                              child: IconButton(
+                                  onPressed: () {
+                                    Route route = MaterialPageRoute(
+                                        builder: (context) => NewConst());
+                                    Navigator.push(context, route);
+                                  },
+                                  icon: Icon(
+                                    Icons.add_circle,
+                                    size: 50,
+                                    color: Colors.blue,
+                                  ))),
+                          SizedBox.fromSize(
+                            size: Size(70, 70), // button width and height
+                            child: ClipOval(
+                              child: Material(
+                                color: Colors.white, // button color
+                                child: InkWell(
+                                  splashColor: Colors.blue, // splash color
+                                  onTap: () {}, // button pressed
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.account_circle), // icon
+                                      Text("Профиль"), // text
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ))),
             ],
-          ),
-          Expanded(
-              child: Align(
-                  alignment: FractionalOffset.bottomCenter,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox.fromSize(
-                        size: Size(70, 70), // button width and height
-                        child: ClipOval(
-                          child: Material(
-                            color: Colors.white, // button color
-                            child: InkWell(
-                              splashColor: Colors.blue, // splash color
-                              onTap: () {
-                                Route route = MaterialPageRoute(
-                                    builder: (context) => MyApp());
-                                Navigator.push(context, route);
-                              }, // button pressed
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.home_outlined), // icon
-                                  Text("Главная"), // text
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox.fromSize(
-                          size: Size(70, 70),
-                          child: IconButton(
-                              onPressed: () {
-                                Route route = MaterialPageRoute(
-                                    builder: (context) => NewConst());
-                                Navigator.push(context, route);
-                              },
-                              icon: Icon(
-                                Icons.add_circle,
-                                size: 50,
-                                color: Colors.blue,
-                              ))),
-                      SizedBox.fromSize(
-                        size: Size(70, 70), // button width and height
-                        child: ClipOval(
-                          child: Material(
-                            color: Colors.white, // button color
-                            child: InkWell(
-                              splashColor: Colors.blue, // splash color
-                              onTap: () {}, // button pressed
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.account_circle), // icon
-                                  Text("Профиль"), // text
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ))),
-        ],
-      )),
+          )),
     );
   }
 }
 
-//22:57
+//23:13
