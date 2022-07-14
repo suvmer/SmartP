@@ -166,7 +166,7 @@ class MyProj extends StatelessWidget {
                     Navigator.push(context, route);
                   },
                   child: Text("Мои проекты",
-                      style: TextStyle(fontSize: 20, color: Colors.green))),
+                      style: TextStyle(fontSize: 20, color: Colors.redAccent))),
               SizedBox(width: 10),
               TextButton(
                   onPressed: () {
@@ -210,7 +210,11 @@ class MyProj extends StatelessWidget {
                       SizedBox.fromSize(
                           size: Size(70, 70),
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Route route = MaterialPageRoute(
+                                    builder: (context) => NewConst());
+                                Navigator.push(context, route);
+                              },
                               icon: Icon(
                                 Icons.add_circle,
                                 size: 50,
@@ -274,7 +278,7 @@ class Chernoviki extends StatelessWidget {
                   },
                   child: Text(
                     "Черновики",
-                    style: TextStyle(fontSize: 20, color: Colors.green),
+                    style: TextStyle(fontSize: 20, color: Colors.redAccent),
                   )),
             ],
           ),
@@ -308,7 +312,11 @@ class Chernoviki extends StatelessWidget {
                       SizedBox.fromSize(
                           size: Size(70, 70),
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Route route = MaterialPageRoute(
+                                    builder: (context) => NewConst());
+                                Navigator.push(context, route);
+                              },
                               icon: Icon(
                                 Icons.add_circle,
                                 size: 50,
@@ -341,4 +349,4 @@ class Chernoviki extends StatelessWidget {
   }
 }
 
-//22:22
+//22:31
