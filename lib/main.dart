@@ -158,6 +158,7 @@ class _NewConstState extends State<NewConst> {
       home: Scaffold(
         backgroundColor: Colors.grey.shade300,
         appBar: AppBar(
+          leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back, color: Colors.black,)),
             title: Text(
               "Выбирите категории",
               style: TextStyle(color: Colors.grey.shade800),
@@ -377,4 +378,4 @@ class Chernoviki extends StatelessWidget {
   }
 }
 
-//23:47
+//0:29
