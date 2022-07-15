@@ -664,71 +664,10 @@ class Chernoviki extends StatelessWidget {
           body: Column(
         children: [
           getHeader(context, 2),
-          Expanded(
-              child: Align(
-                  alignment: FractionalOffset.bottomCenter,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox.fromSize(
-                        size: Size(70, 70), // button width and height
-                        child: ClipOval(
-                          child: Material(
-                            color: Colors.white, // button color
-                            child: InkWell(
-                              splashColor: Colors.blue, // splash color
-                              onTap: () {
-                                Route route = MaterialPageRoute(
-                                    builder: (context) => MyApp());
-                                Navigator.push(context, route);
-                              }, // button pressed
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.home_outlined), // icon
-                                  Text("Главная"), // text
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox.fromSize(
-                          size: Size(70, 70),
-                          child: IconButton(
-                              onPressed: () {
-                                Route route = MaterialPageRoute(
-                                    builder: (context) => NewConst());
-                                Navigator.push(context, route);
-                              },
-                              icon: Icon(
-                                Icons.not_started_sharp,
-                                size: 50,
-                                color: Colors.blue,
-                              ))),
-                      SizedBox.fromSize(
-                        size: Size(70, 70), // button width and height
-                        child: ClipOval(
-                          child: Material(
-                            color: Colors.white, // button color
-                            child: InkWell(
-                              splashColor: Colors.blue, // splash color
-                              onTap: () {}, // button pressed
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.account_circle), // icon
-                                  Text("Профиль"), // text
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ))),
         ],
-      )),
+      ),
+        bottomNavigationBar: Footer(),
+      ),
     );
   }
 }
