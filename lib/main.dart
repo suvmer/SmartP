@@ -300,7 +300,7 @@ class _ChoiceState extends State<Choice> {
                             child: Text("Завершить"),
                             onPressed: () {
                               Route route = MaterialPageRoute(
-                                  builder: (context) => GoodEnd());
+                                  builder: (context) => Scheme());
                               Navigator.push(context, route);
                             },
                           )))),
@@ -515,21 +515,92 @@ class Chernoviki extends StatelessWidget {
   }
 }
 
+class Scheme extends StatelessWidget {
+  const Scheme({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )), backgroundColor: Colors.grey.shade300,),
+          body: Column(
+        children: [
+          SizedBox(height: 15,),
+          Image.asset(
+            'Materials/shema.png',
+            height: 480,
+          ),
+          Expanded(
+              child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: SizedBox.fromSize(
+                      size: Size(120, 56), // button width and height
+                      child: ElevatedButton(
+                        child: Text("Завершить"),
+                        onPressed: () {
+                          Route route = MaterialPageRoute(
+                              builder: (context) => GoodEnd());
+                          Navigator.push(context, route);
+                        },
+                      )))),
+          SizedBox(height: 15,)
+        ],
+      )),
+    );
+  }
+}
+
 class GoodEnd extends StatelessWidget {
   const GoodEnd({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Image.asset('Materials/home.png'),
-          SizedBox(
-            height: 20,
-          ),
-        ],
+    return MaterialApp(
+        home: Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.grey.shade300,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )),
       ),
-    );
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.asset('Materials/home.png', height: 350),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text("Работает"),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.green)),
+                ),
+                ElevatedButton(onPressed: () {}, child: Text("Подробнее")),
+              ],
+            ),
+            ElevatedButton(
+                onPressed: () {}, child: Text("Добавить в мои проекты")),
+          ],
+        ),
+      ),
+    ));
   }
 }
 
@@ -542,4 +613,4 @@ class BadEnd extends StatelessWidget {
   }
 }
 
-//7:19
+//7:56
