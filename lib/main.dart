@@ -138,7 +138,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           )
         ],
-      )),
+      ),
+        bottomNavigationBar: Footer(),
+      ),
     );
     /*Scaffold(
       appBar: AppBar(
@@ -229,6 +231,7 @@ class _NewConstState extends State<NewConst> {
                 },
               );
             }),
+          bottomNavigationBar: Footer(),
       ),
     );
   }
