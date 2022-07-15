@@ -40,6 +40,7 @@
 
 ## Профиль
 Здесь вы можете увидеть информацию о своём профиле в системе
+
 <img src="https://github.com/suvmer/SmartP/blob/master/Materials/3.jpg" alt="Your image title" width="500"/>
 
 
