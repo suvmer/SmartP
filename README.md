@@ -38,7 +38,7 @@
 ### Показ готового кода сценария
 <img src="https://github.com/suvmer/SmartP/blob/master/Materials/8.jpg" alt="Your image title" width="500"/>
 
-##Профиль
+## Профиль
 Здесь вы можете увидеть информацию о своём профиле в системе
 <img src="https://github.com/suvmer/SmartP/blob/master/Materials/3.jpg" alt="Your image title" width="500"/>
 
