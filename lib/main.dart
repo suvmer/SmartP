@@ -167,41 +167,16 @@ class NewConst extends StatefulWidget {
   @override
   State<NewConst> createState() => _NewConstState();
 }
-List<Widget> getCats(toDoList) {
-  List<Widget> ls = [];
-  for(var todoName in toDoList) {
-    ls.add(Row(
-      children: [
-        Expanded(child:
-      TextButton(
-        onPressed: () {
 
-        },
-        child: Text(todoName,
-            style: TextStyle(fontSize: 20))),
-      /*Expanded(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(minWidth: 200),
-          child: Text(todoName),
-        ),
-      )*/
-        )]));
-  }
-  return ls;
-}
 class _NewConstState extends State<NewConst> {
   List toDoList = [
-    "Видеодомофон",
-    "Ворота",
-    "Камеры",
-    "Розетки",
-    "Мультимедиа",
-    "Датчики движения"
+    "1. Умный вентилятор",
+    "2. Умный свет",
+    "3. Автоматическое проветривание",
   ];
-  List<bool> isSelected = List.generate(6, (_)=> false);
+
   @override
   Widget build(BuildContext context) {
-    isSelected = List.filled(toDoList.length, false);
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.grey.shade300,
@@ -215,22 +190,74 @@ class _NewConstState extends State<NewConst> {
                   color: Colors.black,
                 )),
             title: Text(
-              "Выбирите категории",
+              "Выбирите уровень",
               style: TextStyle(color: Colors.grey.shade800),
             ),
             backgroundColor: Colors.grey.shade300),
-        body: ToggleButtons(
-        children: getCats(toDoList),
-        color:Colors.teal,
-        fillColor:Colors.deepPurple,
-      onPressed: (int index) {
-        setState(() {
-          isSelected[index] = !isSelected[index];
-        });
-      },
-      isSelected: isSelected,
-    ),
+        body: ListView.builder(
+            itemCount: toDoList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Dismissible(
+                key: Key(toDoList[index]),
+                child: Card(
+                  child: ListTile(
+                    title: Text(toDoList[index]),
+                    trailing: IconButton(
+                      onPressed: () {
+                        Route route =
+                            MaterialPageRoute(builder: (context) => Choice());
+                        Navigator.push(context, route);
+                      },
+                      icon: Icon(
+                        Icons.not_started_outlined,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                onDismissed: (direction) {
+                  //if (direction (направление) == DismissDirection.endToStart)
+                  setState(() {
+                    toDoList.removeAt(index);
+                  });
+                },
+              );
+            }),
       ),
+    );
+  }
+}
+
+class Choice extends StatelessWidget {
+  const Choice({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        // ListView.builder(itemBuilder: (BuildContext context, int index) {
+        //   return Dismissible(
+        //     key: Key(toDoList[index]),
+        //     child: Card(
+        //       child: ListTile(
+        //         title: Text(toDoList[index]),
+        //         trailing: IconButton(
+        //           onPressed: () {
+        //             setState(() {
+        //               toDoList.removeAt(index);
+        //             });
+        //           },
+        //           icon: Icon(
+        //             Icons.delete_forever,
+        //             color: Colors.blue,
+        //           ),
+        //         ),
+        //       ),
+        //     ),
+        //     onDismissed: (direction) {},
+        //   );
+        // })
+      ],
     );
   }
 }
@@ -318,7 +345,7 @@ class MyProj extends StatelessWidget {
                                 Navigator.push(context, route);
                               },
                               icon: Icon(
-                                Icons.add_circle,
+                                Icons.not_started_sharp,
                                 size: 50,
                                 color: Colors.blue,
                               ))),
@@ -406,7 +433,7 @@ class Chernoviki extends StatelessWidget {
                                 Navigator.push(context, route);
                               },
                               icon: Icon(
-                                Icons.add_circle,
+                                Icons.not_started_sharp,
                                 size: 50,
                                 color: Colors.blue,
                               ))),
@@ -437,4 +464,31 @@ class Chernoviki extends StatelessWidget {
   }
 }
 
-//0:59
+class GoodEnd extends StatelessWidget {
+  const GoodEnd({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Image.asset('Materials/home.png'),
+          SizedBox(
+            height: 20,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BadEnd extends StatelessWidget {
+  const BadEnd({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+//3:05
