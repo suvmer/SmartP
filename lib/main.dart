@@ -35,9 +35,9 @@ Container getHeader(context, [who]) {
         children: [
           TextButton(
               onPressed: () {
-                if(who != 1) {
-                  Route route = MaterialPageRoute(
-                      builder: (context) => MyProj());
+                if (who != 1) {
+                  Route route =
+                      MaterialPageRoute(builder: (context) => MyProj());
                   Navigator.push(context, route);
                 }
               },
@@ -48,9 +48,9 @@ Container getHeader(context, [who]) {
           SizedBox(width: 10),
           TextButton(
             onPressed: () {
-              if(who != 2) {
+              if (who != 2) {
                 Route route =
-                MaterialPageRoute(builder: (context) => Chernoviki());
+                    MaterialPageRoute(builder: (context) => Chernoviki());
                 Navigator.push(context, route);
               }
             },
@@ -282,9 +282,32 @@ class _ChoiceState extends State<Choice> {
                             title: Text(blocks[index]),
                             trailing: IconButton(
                               onPressed: () {
-                                setState(() {
-                                  blocks.removeAt(index);
-                                });
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        //title: Text("Код", style: TextStyle(fontSize: 40)),
+                                        backgroundColor: Colors.white,
+                                        title: Text("Перейти к выбору следующего блока"),
+                                        // content: Image.asset('Materials/Code.png',
+                                        //     height: 500),
+                                        actions: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: IconButton(
+                                              onPressed: () {
+                                                Route route = MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Choice());
+                                                Navigator.push(context, route);
+                                              },
+                                              icon: Icon(Icons.navigate_next,
+                                                  size: 35),
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    });
                               },
                               icon: Icon(
                                 Icons.add_box,
@@ -329,7 +352,7 @@ class Footer extends StatefulWidget {
 class _FooterState extends State<Footer> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',
@@ -346,19 +369,17 @@ class _FooterState extends State<Footer> {
   ];
 
   void _onItemTapped(int index) {
-    if(index == 0) {
-      Route route = MaterialPageRoute(
-          builder: (context) => MyApp());
+    if (index == 0) {
+      Route route = MaterialPageRoute(builder: (context) => MyApp());
       Navigator.push(context, route);
     }
-    if(index == 1) {
-      Route route = MaterialPageRoute(
-          builder: (context) => NewConst());
+    if (index == 1) {
+      Route route = MaterialPageRoute(builder: (context) => NewConst());
       Navigator.push(context, route);
     }
-    if(index == 2) {
-      Route route = MaterialPageRoute(
-          builder: (context) => ProfilePage(light: 2));
+    if (index == 2) {
+      Route route =
+          MaterialPageRoute(builder: (context) => ProfilePage(light: 2));
       Navigator.push(context, route);
     }
     setState(() {
@@ -369,78 +390,85 @@ class _FooterState extends State<Footer> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Главная',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.not_started_sharp),
-            backgroundColor: Colors.blue,
-            label: 'Уровни',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Профиль',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black,
-        onTap: _onItemTapped,
-      );
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_outlined),
+          label: 'Главная',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.not_started_sharp),
+          backgroundColor: Colors.blue,
+          label: 'Уровни',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle),
+          label: 'Профиль',
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.black,
+      onTap: _onItemTapped,
+    );
   }
 }
 
 class MyProj extends StatelessWidget {
   MyProj({Key? key}) : super(key: key);
   int _selectedIndex = 0;
+
   void _onItemTapped(int index) {
     log(index);
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          body: Column(
-        children: [
-          getHeader(context, 1),
-          Expanded(
-              child: SizedBox(
-                  height: 700.0,
-                  child: GridView.count(
-                      padding: EdgeInsets.all(40.0),
-                      crossAxisCount: 2,
-                      childAspectRatio: 1.0,
-                      mainAxisSpacing: 40.0,
-                      crossAxisSpacing: 40.0,
-                      children: [
-                        GridTile(
-                            child: Container(
-                                color: UniqueColorGenerator.getColor(),
-                                child: Padding(padding: EdgeInsets.all(70.0)))),
-                        GridTile(child: new FlutterLogo()),
-                        GridTile(
-                            child: Container(
-                                color: UniqueColorGenerator.getColor(),
-                                child: Padding(padding: EdgeInsets.all(70.0)))),
-                        GridTile(
-                            child: Container(
-                                color: UniqueColorGenerator.getColor(),
-                                child: Padding(padding: EdgeInsets.all(70.0)))),
-                        GridTile(child: new FlutterLogo()),
-                        GridTile(
-                            child: Container(
-                                color: UniqueColorGenerator.getColor(),
-                                child: Padding(padding: EdgeInsets.all(70.0)))),
-                        GridTile(child: new FlutterLogo()),
-                        GridTile(
-                            child: Container(
-                                color: UniqueColorGenerator.getColor(),
-                                child: Padding(padding: EdgeInsets.all(70.0)))),
-                        GridTile(child: new FlutterLogo())
-                      ]))),
-          /*Expanded(
+        body: Column(
+          children: [
+            getHeader(context, 1),
+            Expanded(
+                child: SizedBox(
+                    height: 700.0,
+                    child: GridView.count(
+                        padding: EdgeInsets.all(40.0),
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.0,
+                        mainAxisSpacing: 40.0,
+                        crossAxisSpacing: 40.0,
+                        children: [
+                          GridTile(
+                              child: Container(
+                                  color: UniqueColorGenerator.getColor(),
+                                  child:
+                                      Padding(padding: EdgeInsets.all(70.0)))),
+                          GridTile(child: new FlutterLogo()),
+                          GridTile(
+                              child: Container(
+                                  color: UniqueColorGenerator.getColor(),
+                                  child:
+                                      Padding(padding: EdgeInsets.all(70.0)))),
+                          GridTile(
+                              child: Container(
+                                  color: UniqueColorGenerator.getColor(),
+                                  child:
+                                      Padding(padding: EdgeInsets.all(70.0)))),
+                          GridTile(child: new FlutterLogo()),
+                          GridTile(
+                              child: Container(
+                                  color: UniqueColorGenerator.getColor(),
+                                  child:
+                                      Padding(padding: EdgeInsets.all(70.0)))),
+                          GridTile(child: new FlutterLogo()),
+                          GridTile(
+                              child: Container(
+                                  color: UniqueColorGenerator.getColor(),
+                                  child:
+                                      Padding(padding: EdgeInsets.all(70.0)))),
+                          GridTile(child: new FlutterLogo())
+                        ]))),
+            /*Expanded(
               child: Align(
                   alignment: FractionalOffset.bottomCenter,
                   child: Row(
@@ -507,14 +535,14 @@ class MyProj extends StatelessWidget {
                       ),
                     ],
                   ))),*/
-        ],
+          ],
+        ),
+        bottomNavigationBar: Footer(),
       ),
-      bottomNavigationBar: Footer(),
-      ),
-
     );
   }
 }
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({int light = 0, Key? key}) : super(key: key);
 
@@ -557,27 +585,26 @@ class ProfilePage extends StatelessWidget {
                 height: 18,
               ),
               Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                      Text("13 лет", style: TextStyle(fontSize: 20)),
-                      ]
-              ),
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("13 лет", style: TextStyle(fontSize: 20)),
+                  ]),
               Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Москва", style: TextStyle(fontSize: 20)),
-                  ]
-              ),
+                  ]),
               Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Почта: ", style: TextStyle(fontSize: 20)),
-                    Text("noin45@mail.ru", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                  ]
-              ),
+                    Text("noin45@mail.ru",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold)),
+                  ]),
               SizedBox(
                 height: 20,
               ),
@@ -586,7 +613,7 @@ class ProfilePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton.icon(
-                    icon: FaIcon(Icons.delete),
+                    icon: Icon(Icons.delete),
                     onPressed: () {},
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -595,7 +622,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ),
                       backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.pink),
+                          MaterialStateProperty.all<Color>(Colors.pink),
                       padding: MaterialStateProperty.all(
                         EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                       ),
@@ -614,6 +641,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
+
 class UniqueColorGenerator {
   static Random random = new Random();
 
@@ -782,7 +810,7 @@ class GoodEnd extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text("Работает", style: TextStyle(fontSize: 40)),
+                  child: Text("Работает", style: TextStyle(fontSize: 30)),
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.green)),
                 ),
@@ -792,13 +820,14 @@ class GoodEnd extends StatelessWidget {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Text("Код", style: TextStyle(fontSize: 40)),
-                              backgroundColor: Colors.white70,
+                              title:
+                                  Text("Код", style: TextStyle(fontSize: 40)),
+                              backgroundColor: Colors.white,
                               content: Image.asset('Materials/Code.png',
-                                  height: 500),
+                                  height: 1000),
                               actions: [
                                 Padding(
-                                  padding: const EdgeInsets.all(22.0),
+                                  padding: const EdgeInsets.all(10.0),
                                   child: IconButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
@@ -814,7 +843,9 @@ class GoodEnd extends StatelessWidget {
               ],
             ),
             ElevatedButton(
-                onPressed: () {}, child: Text("Добавить в мои проекты", style: TextStyle(fontSize: 25))),
+                onPressed: () {},
+                child: Text("Добавить в мои проекты",
+                    style: TextStyle(fontSize: 25))),
           ],
         ),
       ),
@@ -831,4 +862,4 @@ class BadEnd extends StatelessWidget {
   }
 }
 
-//8:12
+//с блоками
