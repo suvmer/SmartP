@@ -709,37 +709,44 @@ class Scheme extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            )), backgroundColor: Colors.grey.shade300,),
-          body: Column(
-        children: [
-          SizedBox(height: 15,),
-          Image.asset(
-            'Materials/shema.png',
-            height: 480,
+          appBar: AppBar(
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                )),
+            backgroundColor: Colors.grey.shade300,
           ),
-          Expanded(
-              child: Align(
-                  alignment: FractionalOffset.bottomCenter,
-                  child: SizedBox.fromSize(
-                      size: Size(120, 56), // button width and height
-                      child: ElevatedButton(
-                        child: Text("Завершить"),
-                        onPressed: () {
-                          Route route = MaterialPageRoute(
-                              builder: (context) => GoodEnd());
-                          Navigator.push(context, route);
-                        },
-                      )))),
-          SizedBox(height: 15,)
-        ],
-      )),
+          body: Column(
+            children: [
+              SizedBox(
+                height: 15,
+              ),
+              Image.asset(
+                'Materials/shema.png',
+                height: 480,
+              ),
+              Expanded(
+                  child: Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: SizedBox.fromSize(
+                          size: Size(120, 56), // button width and height
+                          child: ElevatedButton(
+                            child: Text("Завершить"),
+                            onPressed: () {
+                              Route route = MaterialPageRoute(
+                                  builder: (context) => GoodEnd());
+                              Navigator.push(context, route);
+                            },
+                          )))),
+              SizedBox(
+                height: 15,
+              )
+            ],
+          )),
     );
   }
 }
@@ -779,7 +786,31 @@ class GoodEnd extends StatelessWidget {
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.green)),
                 ),
-                ElevatedButton(onPressed: () {}, child: Text("Подробнее")),
+                ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Код"),
+                              backgroundColor: Colors.white70,
+                              content: Image.asset('Materials/Code.png',
+                                  height: 500),
+                              actions: [
+                                Padding(
+                                  padding: const EdgeInsets.all(22.0),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    icon: Icon(Icons.arrow_back, size: 40),
+                                  ),
+                                )
+                              ],
+                            );
+                          });
+                    },
+                    child: Text("Подробнее")),
               ],
             ),
             ElevatedButton(
@@ -800,4 +831,4 @@ class BadEnd extends StatelessWidget {
   }
 }
 
-//7:56
+//8:12
