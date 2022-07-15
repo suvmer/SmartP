@@ -12,7 +12,8 @@
 Так, мы можем перейти в список своих проектов, в черновики, список уровней игры или в профиль.
 
 
-[[ https://github.com/suvmer/SmartP/blob/master/Materials/1.jpg \| height=4px]]
+![Alt-текст](https://github.com/suvmer/SmartP/blob/master/Materials/1.jpg "Орк")
+[[ https://github.com/suvmer/SmartP/blob/master/Materials/1.jpg \| height=90px]]
 
 
 ## Мои проекты
