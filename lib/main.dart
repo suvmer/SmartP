@@ -782,7 +782,7 @@ class GoodEnd extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text("Работает"),
+                  child: Text("Работает", style: TextStyle(fontSize: 40)),
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.green)),
                 ),
@@ -792,7 +792,7 @@ class GoodEnd extends StatelessWidget {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Text("Код"),
+                              title: Text("Код", style: TextStyle(fontSize: 40)),
                               backgroundColor: Colors.white70,
                               content: Image.asset('Materials/Code.png',
                                   height: 500),
@@ -803,18 +803,18 @@ class GoodEnd extends StatelessWidget {
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    icon: Icon(Icons.arrow_back, size: 40),
+                                    icon: Icon(Icons.arrow_back, size: 25),
                                   ),
                                 )
                               ],
                             );
                           });
                     },
-                    child: Text("Подробнее")),
+                    child: Text("Подробнее", style: TextStyle(fontSize: 25))),
               ],
             ),
             ElevatedButton(
-                onPressed: () {}, child: Text("Добавить в мои проекты")),
+                onPressed: () {}, child: Text("Добавить в мои проекты", style: TextStyle(fontSize: 25))),
           ],
         ),
       ),
