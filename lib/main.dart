@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,8 +35,11 @@ Container getHeader(context, [who]) {
         children: [
           TextButton(
               onPressed: () {
-                Route route = MaterialPageRoute(builder: (context) => MyProj());
-                Navigator.push(context, route);
+                if(who != 1) {
+                  Route route = MaterialPageRoute(
+                      builder: (context) => MyProj());
+                  Navigator.push(context, route);
+                }
               },
               child: Text("Мои проекты",
                   style: who == 1
@@ -44,9 +48,11 @@ Container getHeader(context, [who]) {
           SizedBox(width: 10),
           TextButton(
             onPressed: () {
-              Route route =
-                  MaterialPageRoute(builder: (context) => Chernoviki());
-              Navigator.push(context, route);
+              if(who != 2) {
+                Route route =
+                MaterialPageRoute(builder: (context) => Chernoviki());
+                Navigator.push(context, route);
+              }
             },
             child: Text("Черновики",
                 style: who == 2
@@ -313,9 +319,82 @@ class _ChoiceState extends State<Choice> {
   }
 }
 
-class MyProj extends StatelessWidget {
-  const MyProj({Key? key}) : super(key: key);
+class Footer extends StatefulWidget {
+  int def = 0;
+  Footer({def = 0, Key? key}) : super(key: key);
 
+  @override
+  State<Footer> createState() => _FooterState(selectedIndex: def);
+}
+
+class _FooterState extends State<Footer> {
+  int selectedIndex = 0;
+  _FooterState({int selectedIndex = 0});
+  static const TextStyle optionStyle =
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    if(index == 0) {
+      Route route = MaterialPageRoute(
+          builder: (context) => MyApp());
+      Navigator.push(context, route);
+    }
+    if(index == 1) {
+      Route route = MaterialPageRoute(
+          builder: (context) => NewConst());
+      Navigator.push(context, route);
+    }
+    if(index == 2) {
+      Route route = MaterialPageRoute(
+          builder: (context) => ProfilePage(light: 2));
+      Navigator.push(context, route);
+    }
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: 'Главная',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.not_started_sharp),
+            backgroundColor: Colors.blue,
+            label: 'Уровни',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'Профиль',
+          ),
+        ],
+        currentIndex: selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
+      );
+  }
+}
+
+class MyProj extends StatelessWidget {
+  MyProj({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -407,7 +486,11 @@ class MyProj extends StatelessWidget {
                             color: Colors.white, // button color
                             child: InkWell(
                               splashColor: Colors.blue, // splash color
-                              onTap: () {}, // button pressed
+                              onTap: () {
+                                Route route = MaterialPageRoute(
+                                    builder: (context) => ProfilePage());
+                                Navigator.push(context, route);
+                              }, // button pressed
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -422,11 +505,178 @@ class MyProj extends StatelessWidget {
                     ],
                   ))),
         ],
-      )),
+      ),
+      bottomNavigationBar: Footer(),
+      ),
+
     );
   }
 }
+class ProfilePage extends StatelessWidget {
+  int light = 0;
+  ProfilePage({light = 0, Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+
+          title: Text("Round Image with Button"
+          ),
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(140),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 10,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: CircleAvatar(
+                  radius: 120,
+                  backgroundImage: AssetImage("Materials/img.png"),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Иван Смирнов  ",
+                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 18,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                      Text("13 лет"),
+                      ]
+              ),
+              Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text("13 лет"),
+                  ]
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                    icon: FaIcon(FontAwesomeIcons.github),
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.pink),
+                      padding: MaterialStateProperty.all(
+                        EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      ),
+                    ),
+                    label: Text(
+                      "GitHub",
+                    ),
+                  ),
+                  SizedBox(
+                    width: 18,
+                  ),
+                  ElevatedButton.icon(
+                    icon: FaIcon(FontAwesomeIcons.linkedin),
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.pink),
+                      padding: MaterialStateProperty.all(
+                        EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      ),
+                    ),
+                    label: Text(
+                      "LinkedIn",
+                    ),
+                  ),
+                  SizedBox(
+                    width: 18,
+                  ),
+                  ElevatedButton.icon(
+                    icon: FaIcon(FontAwesomeIcons.twitter),
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.pink),
+                      padding: MaterialStateProperty.all(
+                        EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      ),
+                    ),
+                    label: Text(
+                      "Twitter",
+                    ),
+                  ),
+                  SizedBox(
+                    width: 18,
+                  ),
+                  ElevatedButton.icon(
+                    icon: FaIcon(FontAwesomeIcons.facebook),
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.pink),
+                      padding: MaterialStateProperty.all(
+                        EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      ),
+                    ),
+                    label: Text(
+                      "Facebook",
+                    ),
+                  ),
+                  SizedBox(
+                    width: 18,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        bottomNavigationBar: Footer(def: light),
+      ),
+    );
+  }
+}
 class UniqueColorGenerator {
   static Random random = new Random();
 
