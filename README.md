@@ -15,6 +15,7 @@
 ![Alt-текст](https://github.com/suvmer/SmartP/blob/master/Materials/1.jpg "Орк")
 [[ https://github.com/suvmer/SmartP/blob/master/Materials/1.jpg \| height=90px]]
 <img src="[https://github.com/favicon.ico](https://github.com/suvmer/SmartP/blob/master/Materials/1.jpg)" width="48"/>
+<img src="https://github.com/suvmer/SmartP/blob/master/Materials/1.jpg" alt="Your image title" width="250"/>
 
 ## Мои проекты
 На экране расположена таблица, позволяющая выбрать готовый, ранее созданный пользователем проект.
