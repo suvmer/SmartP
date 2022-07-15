@@ -12,7 +12,9 @@
 Так, мы можем перейти в список своих проектов, в черновики, список уровней игры или в профиль.
 
 
-![Alt-текст](https://github.com/suvmer/SmartP/blob/master/Materials/1.jpg | width=100)
+![Alt-текст](https://github.com/suvmer/SmartP/blob/master/Materials/1.jpg "Орк")
+[[ https://github.com/suvmer/SmartP/blob/master/Materials/1.jpg \| height=48px]]
+
 
 ## Мои проекты
 На экране расположена таблица, позволяющая выбрать готовый, ранее созданный пользователем проект.
