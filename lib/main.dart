@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Главная'),
     );
@@ -166,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );*/
   }
 }
-
+//работает
 class NewConst extends StatefulWidget {
   const NewConst({Key? key}) : super(key: key);
 
