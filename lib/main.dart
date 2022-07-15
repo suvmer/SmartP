@@ -228,36 +228,87 @@ class _NewConstState extends State<NewConst> {
   }
 }
 
-class Choice extends StatelessWidget {
+class Choice extends StatefulWidget {
   const Choice({Key? key}) : super(key: key);
 
   @override
+  State<Choice> createState() => _ChoiceState();
+}
+
+class _ChoiceState extends State<Choice> {
+  List blocks = [
+    "Получение данных с датчика",
+    "Вкл. вентилятор",
+    "Выкл. вентилятор",
+    "Если температура больше 30",
+    "Если температура меньше 30",
+  ];
+
+  @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        // ListView.builder(itemBuilder: (BuildContext context, int index) {
-        //   return Dismissible(
-        //     key: Key(toDoList[index]),
-        //     child: Card(
-        //       child: ListTile(
-        //         title: Text(toDoList[index]),
-        //         trailing: IconButton(
-        //           onPressed: () {
-        //             setState(() {
-        //               toDoList.removeAt(index);
-        //             });
-        //           },
-        //           icon: Icon(
-        //             Icons.delete_forever,
-        //             color: Colors.blue,
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //     onDismissed: (direction) {},
-        //   );
-        // })
-      ],
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.black,
+                  )),
+              title: Text(
+                "Выбирите блок",
+                style: TextStyle(color: Colors.grey.shade800),
+              ),
+              backgroundColor: Colors.grey.shade300),
+          body: Column(
+            children: [
+              Container(
+                height: 500,
+                child: ListView.builder(
+                    itemCount: blocks.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Dismissible(
+                        key: Key(blocks[index]),
+                        child: Card(
+                          child: ListTile(
+                            title: Text(blocks[index]),
+                            trailing: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  blocks.removeAt(index);
+                                });
+                              },
+                              icon: Icon(
+                                Icons.add_box,
+                                color: Colors.grey.shade700,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onDismissed: (direction) {},
+                      );
+                    }),
+              ),
+              Expanded(
+                  child: Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: SizedBox.fromSize(
+                          size: Size(120, 60), // button width and height
+                          child: ElevatedButton(
+                            child: Text("Завершить"),
+                            onPressed: () {
+                              Route route = MaterialPageRoute(
+                                  builder: (context) => GoodEnd());
+                              Navigator.push(context, route);
+                            },
+                          )))),
+              SizedBox(
+                height: 25,
+              )
+            ],
+          )),
     );
   }
 }
@@ -491,4 +542,4 @@ class BadEnd extends StatelessWidget {
   }
 }
 
-//3:05
+//7:19
