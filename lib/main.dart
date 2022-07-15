@@ -320,16 +320,14 @@ class _ChoiceState extends State<Choice> {
 }
 
 class Footer extends StatefulWidget {
-  int def = 0;
-  Footer({def = 0, Key? key}) : super(key: key);
+  const Footer({Key? key}) : super(key: key);
 
   @override
-  State<Footer> createState() => _FooterState(selectedIndex: def);
+  State<Footer> createState() => _FooterState();
 }
 
 class _FooterState extends State<Footer> {
-  int selectedIndex = 0;
-  _FooterState({int selectedIndex = 0});
+  int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -364,7 +362,7 @@ class _FooterState extends State<Footer> {
       Navigator.push(context, route);
     }
     setState(() {
-      selectedIndex = index;
+      _selectedIndex = index;
     });
   }
 
@@ -386,8 +384,9 @@ class _FooterState extends State<Footer> {
             label: 'Профиль',
           ),
         ],
-        currentIndex: selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black,
         onTap: _onItemTapped,
       );
   }
@@ -395,6 +394,10 @@ class _FooterState extends State<Footer> {
 
 class MyProj extends StatelessWidget {
   MyProj({Key? key}) : super(key: key);
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) {
+    log(index);
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -437,7 +440,7 @@ class MyProj extends StatelessWidget {
                                 child: Padding(padding: EdgeInsets.all(70.0)))),
                         GridTile(child: new FlutterLogo())
                       ]))),
-          Expanded(
+          /*Expanded(
               child: Align(
                   alignment: FractionalOffset.bottomCenter,
                   child: Row(
@@ -503,7 +506,7 @@ class MyProj extends StatelessWidget {
                         ),
                       ),
                     ],
-                  ))),
+                  ))),*/
         ],
       ),
       bottomNavigationBar: Footer(),
@@ -513,24 +516,19 @@ class MyProj extends StatelessWidget {
   }
 }
 class ProfilePage extends StatelessWidget {
-  int light = 0;
-  ProfilePage({light = 0, Key? key}) : super(key: key);
+  const ProfilePage({int light = 0, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-
-          title: Text("Round Image with Button"
-          ),
-        ),
         body: Padding(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              getHeader(context),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(140),
@@ -560,16 +558,24 @@ class ProfilePage extends StatelessWidget {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                      Text("13 лет"),
+                      Text("13 лет", style: TextStyle(fontSize: 20)),
                       ]
               ),
               Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("13 лет"),
+                    Text("Москва", style: TextStyle(fontSize: 20)),
+                  ]
+              ),
+              Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Почта: ", style: TextStyle(fontSize: 20)),
+                    Text("noin45@mail.ru", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   ]
               ),
               SizedBox(
@@ -580,7 +586,7 @@ class ProfilePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton.icon(
-                    icon: FaIcon(FontAwesomeIcons.github),
+                    icon: FaIcon(Icons.delete),
                     onPressed: () {},
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -595,84 +601,15 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                     label: Text(
-                      "GitHub",
+                      "Удалить аккаунт",
                     ),
-                  ),
-                  SizedBox(
-                    width: 18,
-                  ),
-                  ElevatedButton.icon(
-                    icon: FaIcon(FontAwesomeIcons.linkedin),
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
-                      backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.pink),
-                      padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                      ),
-                    ),
-                    label: Text(
-                      "LinkedIn",
-                    ),
-                  ),
-                  SizedBox(
-                    width: 18,
-                  ),
-                  ElevatedButton.icon(
-                    icon: FaIcon(FontAwesomeIcons.twitter),
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
-                      backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.pink),
-                      padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                      ),
-                    ),
-                    label: Text(
-                      "Twitter",
-                    ),
-                  ),
-                  SizedBox(
-                    width: 18,
-                  ),
-                  ElevatedButton.icon(
-                    icon: FaIcon(FontAwesomeIcons.facebook),
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
-                      backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.pink),
-                      padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                      ),
-                    ),
-                    label: Text(
-                      "Facebook",
-                    ),
-                  ),
-                  SizedBox(
-                    width: 18,
                   ),
                 ],
               ),
             ],
           ),
         ),
-        bottomNavigationBar: Footer(def: light),
+        bottomNavigationBar: Footer(),
       ),
     );
   }
