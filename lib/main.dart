@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(
             height: 40,
           ),
-          Image.asset("Materials/pazl2.png"),
+          Image.asset("Materials/pazl2.png", height: 400),
           SizedBox.fromSize(
             size: Size(130, 50), // button width and height
             child: Container(
@@ -785,10 +785,14 @@ class GoodEnd extends StatelessWidget {
               ],
             ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Route route = MaterialPageRoute(
+                      builder: (context) => MyProj());
+                  Navigator.push(context, route);
+                },
                 child: Text("Добавить в мои проекты",
                     style: TextStyle(fontSize: 25))),
-          ],
+          ],//Пуш
         ),
       ),
     ));
