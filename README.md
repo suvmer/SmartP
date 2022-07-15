@@ -18,20 +18,24 @@
 Навигация далее осуществляется так же, как и на главной странице.
 
 
-![Alt-текст](https://avatars1.githubusercontent.com/u/5384215?v=3&s=460 "Орк")
+<img src="https://github.com/suvmer/SmartP/blob/master/Materials/2.jpg" alt="Your image title" width="500"/>
 
 ## Черновики
-На данной странице можно видеть свои незавернешнные работы, а также перейти и закончить их.
+На данной странице можно видеть свои незавершённые работы, а также перейти и закончить их.
 
-
-![Alt-текст](https://avatars1.githubusercontent.com/u/5384215?v=3&s=460 "Орк")
-
+<img src="https://github.com/suvmer/SmartP/blob/master/Materials/10.png" alt="Your image title" width="500"/>
 
 
 ## Уровни
 Создание сценариев для работы умных устройств при помощи интерактивных блок-схем.
 На каждом уровне предложены задания - чем выше уровень, тем они сложнее.
 
+<img src="https://github.com/suvmer/SmartP/blob/master/Materials/4.jpg" alt="Your image title" width="500"/>
+<img src="https://github.com/suvmer/SmartP/blob/master/Materials/5.jpg" alt="Your image title" width="500"/>
+<img src="https://github.com/suvmer/SmartP/blob/master/Materials/6.jpg" alt="Your image title" width="500"/>
+<img src="https://github.com/suvmer/SmartP/blob/master/Materials/7.jpg" alt="Your image title" width="500"/>
 
-![Alt-текст](https://avatars1.githubusercontent.com/u/5384215?v=3&s=460 "Орк")
+### Показ готового кода сценария
+<img src="https://github.com/suvmer/SmartP/blob/master/Materials/8.jpg" alt="Your image title" width="500"/>
+
 
